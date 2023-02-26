@@ -4,17 +4,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import geico.bdd.common.CommonActions;
 
-import static geico.bdd.common.CommonActions.*;
-
-import java.time.Duration;
 
 public class GetAHomeQuote {
 
+	CommonActions actions;
+
 	public GetAHomeQuote(WebDriver driver) {
 		PageFactory.initElements(driver, this);
+		actions = new CommonActions(driver);
 	}
 
 	@FindBy(xpath = "(//div[@class='product-checkbox'])[2]")
@@ -37,41 +36,36 @@ public class GetAHomeQuote {
 	@FindBy(css = ".btn.btn--primary.btn--full-mobile.wizardNavigation.wizardForwardsNavigation")
 	WebElement nextBtn;
 
-	public void clickHomeLob(WebDriver driver) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.elementToBeClickable(homeLOB));
-		click(homeLOB);
+	public void clickHomeLob() {
+		actions.click(homeLOB);
 	}
 
 	public void insertZipCode2(String zip) {
 
-		insert(zipCodeInput2, zip);
+		actions.insert(zipCodeInput2, zip);
 
 	}
 
-	public void clickStartNewQuote(WebDriver driver) {
+	public void clickStartNewQuote() {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-		wait.until(ExpectedConditions.elementToBeClickable(startMyQuoteBtn));
-		click(startMyQuoteBtn);
-
+		actions.click(startMyQuoteBtn);
 	}
 
 	public void validateGetAHomeQuotePageTitle(String expectedTitle) {
-		validate(getAHomeQuotePageTitle, expectedTitle);
+		actions.validate(getAHomeQuotePageTitle, expectedTitle);
 	}
 
 	public void insertLocation(String location) {
-		insert(enterLocation, location);
-		enter(enterLocation);
+		actions.insert(enterLocation, location);
+		
 	}
 
 	public void insertUnitNumber(String unitNumber) {
-		insert(unitNumberInput, unitNumber);
+		actions.insert(unitNumberInput, unitNumber);
 	}
 
 	public void clickNextBtn() {
-		click(nextBtn);
+		actions.click(nextBtn);
 	}
 
 }

@@ -1,21 +1,20 @@
 package geico.bdd.objects;
 
-import static geico.bdd.common.CommonActions.*;
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import geico.bdd.common.CommonActions;
 
 
+public class AboutYouPage {
 
-public class AboutYouPage{
-	
-	
 	WebDriver driver;
+	CommonActions actions;
 
 	public AboutYouPage(WebDriver driver) {
 		PageFactory.initElements(driver, this);
+		actions = new CommonActions(driver);
 	}
 
 	@FindBy(css = ".title.active")
@@ -36,53 +35,45 @@ public class AboutYouPage{
 	WebElement aptInput;
 	@FindBy(css = "button.btn.btn--primary.btn--full-mobile.btn--pull-right")
 	WebElement nextBtn3;
-	
-	
-	
-	
 
 	public void ValidateAboutYouPageTitle(String expectedTitle) {
-		validate(aboutYouPageTitle, expectedTitle);
+		actions.validate(aboutYouPageTitle, expectedTitle);
 	}
-	
-	public void insertDateOfBirthField( String dateOfBirth) {
-		insert(dateOfBirthInput, dateOfBirth);
+
+	public void insertDateOfBirthField(String dateOfBirth) {
+		actions.insert(dateOfBirthInput, dateOfBirth);
 	}
 
 	public void clickNextBtn1() {
-		click(nextBtn1);
+		actions.click(nextBtn1);
 	}
 
-	public void insertFirstNameField(String firstName ) {
-		
-		insert(firstNameInput, firstName);
+	public void insertFirstNameField(String firstName) {
+
+		actions.insert(firstNameInput, firstName);
 
 	}
-	
+
 	public void insertLastNameField(String lastName) {
-		insert(lastNmaeInput, lastName);
+		actions.insert(lastNmaeInput, lastName);
 	}
-	
 
 	public void clickNextBtn2() {
-		click(nextBtn2);
+		actions.click(nextBtn2);
 	}
-	
+
 	public void insertAddressField(String address) {
-		
-		insert(addressInput, address);
-		enter(aboutYouPageTitle);
+
+		actions.insert(addressInput, address);
+		actions.enter(aboutYouPageTitle);
 	}
-	
-	
+
 	public void insertAptField(String apt) {
-		insert(aptInput, apt);
+		actions.insert(aptInput, apt);
 	}
-	
+
 	public void clickNextBtn3() {
-		click(nextBtn3);
+		actions.click(nextBtn3);
 	}
-	 
-	
 
 }
